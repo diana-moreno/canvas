@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-  background-color: #8fcac4;
+  background-color: #a9d8fd;
   font-family: "Comfortaa", cursive;
 }
 
@@ -46,7 +46,8 @@ main {
   text-align: center;
   position: relative;
   background-color: white;
-  border: 0.1rem solid #8fcac4;
+  border: 0.5rem solid #a9d8fd;
+  border-radius: 18px;
   flex: 1;
 }
 .board__box--0 {
@@ -104,7 +105,7 @@ main {
   position: absolute;
   bottom: 9px;
   right: 9px;
-  color: #8fcac4;
+  color: #71a1c6;
   cursor: pointer;
 }
 .box__add i {
@@ -116,17 +117,29 @@ main {
   padding: 0 0.4rem 0.8rem 0.4rem;
   text-align: left;
 }
-.box__content ul li {
+
+.item {
   display: inline-block;
   padding: 0.8rem 0.5rem;
-  background-color: #fff6de;
   border-radius: 7px;
   margin: 0.3rem;
   color: #4b3d3c;
 }
+.item--how {
+  background-color: #feeaeb;
+}
+.item--what {
+  background-color: #fff6de;
+}
+.item--with {
+  background-color: #def3ff;
+}
+.item--how-many {
+  background-color: #c4f2ee;
+}
 
 .box__add:hover {
-  color: #639691;
+  color: #71a1c6;
   transform: scale(1.3) perspective(1px);
 }
 
