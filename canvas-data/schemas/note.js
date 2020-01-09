@@ -5,7 +5,7 @@ module.exports = new Schema({
     type: String
     required: true
   },
-  block: {
+  box: {
     type: Number,
     required: true,
     enum: [0, 1, 2, 3, 4, 5, 6, 7, 8]
