@@ -1,0 +1,47 @@
+{
+  "name": "canvas-app",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "canvas-utils": "file:../canvas-utils"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1",
+    "node-sass": "^4.13.0",
+    "canvas-data": "file:../canvas-data"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --runInBand --no-cache",
+    "test-debug": "react-scripts inspect test --runInBand --no-cache",
+    "sass": "sass template/index.sass template/index.css",
+    "sass:watch": "sass --watch template/index.sass template/index.css",
+    "test:coverage": "react-scripts test --coverage --watchAll",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "homepage": ".",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
