@@ -3,7 +3,7 @@ html, body
   margin: 0
 
 body
-  background-color: #a9d8fd
+  background-color: #719abb
   font-family: "Comfortaa", cursive
 
 header
@@ -17,13 +17,11 @@ header
     padding: 1rem
 
 main
-    min-height: calc(100% - 5rem)
-    padding: 0 1rem
+    min-height: calc(100% - 4rem)
     color: #3f3c3c
     display: grid
     grid-template-areas: "top" "bottom"
     grid-template-rows: 3fr 1fr
-    padding-bottom: 1rem
 
 .board
   &__top
@@ -37,14 +35,12 @@ main
     flex-wrap: wrap
     grid-area: bottom
     grid-template-columns: repeat(2, 1fr)
-    padding-top: 0.1rem
 
   &__box
     text-align: center
     position: relative
     background-color: white
-    border: 0.5rem solid #a9d8fd
-    border-radius: 18px
+    border: 1px solid #719abb5e
     flex: 1
 
     &--0
@@ -81,7 +77,6 @@ main
     &--8
       grid-column: 1fr
 
-
 .box
   &__title
     display: flex
@@ -95,7 +90,6 @@ main
       padding: 0.3rem 1rem
       margin: 0
 
-
   &__help
     color: #b9b9b9
     cursor: pointer
@@ -104,7 +98,7 @@ main
     position: absolute
     bottom: 9px
     right: 9px
-    color: #71a1c6
+    color: #719abb
     cursor: pointer
 
     i
@@ -114,7 +108,7 @@ main
     ul
       padding-left: 0
       margin: 0
-      padding: 0 0.4rem 0.8rem 0.4rem
+      padding: 0 0.6rem 0.8rem 0.6rem
       text-align: left
 
 .item
@@ -123,11 +117,12 @@ main
   border-radius: 7px
   margin: 0.3rem
   color: #4b3d3c
-
-  &--how
-    background-color: #feeaeb
+  cursor: pointer
 
   &--what
+    background-color: #feeaeb
+
+  &--how
     background-color:#fff6de
 
   &--with
@@ -137,9 +132,10 @@ main
     background-color: #c4f2ee
 
 .box__add:hover
-  color: #71a1c6
-  transform: scale(1.3) perspective(1px)
+  transform: scale(1.3)
 
+.item:hover
+  transform: scale(1.1)
 
 @media only screen and (min-width: 1230px)
   .board
