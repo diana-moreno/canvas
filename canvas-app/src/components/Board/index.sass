@@ -1,0 +1,23 @@
+.board
+  min-height: calc(100% - 4rem)
+  color: #3f3c3c
+  display: grid
+  grid-template-areas: "top" "bottom"
+  grid-template-rows: 3fr 1fr
+
+  &__top, &__bottom
+    display: flex
+    flex-wrap: wrap
+
+@media only screen and (min-width: 1230px)
+  .board
+    &__top
+      display: grid
+      grid-area: top
+      grid-template-columns: repeat(5, 1fr)
+      grid-template-rows: repeat(2, 1fr)
+
+    &__bottom
+      display: grid
+      grid-area: bottom
+      grid-template-columns: repeat(2, 1fr)
