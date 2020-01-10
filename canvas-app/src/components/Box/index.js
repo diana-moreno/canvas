@@ -1,29 +1,81 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import './index.sass'
 import Header from '../Header'
 
-export default function ({ index, title, icon, group }) {
+export default function ({ index, title, icon, group, hint }) {
+  const [isNewNote, setIsNewNote] = useState(false)
+  const [note, setNote] = useState(null)
+
+  useEffect(() => {
+    setNote(null)
+    isNewNote && wrapperRef.current.focus()
+  }, [isNewNote])
+
+  function enableCreateNoteMode() {
+    setIsNewNote(true)
+  }
+
+  function handleCreateNote(event) {
+    const note = event.target.value
+    setNote(note)
+  }
+
+  function useOutsideAlerter(ref) {
+    async function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        !note && setIsNewNote(false)
+/*        if (note) {
+          const newTask = await createTask(token, status, note)
+          onCreateNewTask(newTask, status) // PARA LLEVARLO AL PADRE
+        }*/
+        setIsNewNote(false)
+        setNote(null)
+      }
+    }
+    useEffect(() => {
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up (componentDidUnmount)
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    });
+  }
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
   return <>
     <div className={`box box-${index}`}>
       <div className='box__title'>
         <i className="material-icons">{icon}</i>
         <h3>{title}</h3>
-        <i className="material-icons box__help">help_outline</i>
+        <i title={hint} className="material-icons box__help">help_outline</i>
       </div>
       <div className='box__content'>
         <ul className='box__list-items'>
-{/*          <li className={`item item--${group}`}>Example key 1</li>
+        { isNewNote &&
+          <li className={`item item-${group} item_new`}>
+            <input
+              type='text'
+              className='item__input'
+              placeholder='add new note...'
+              onChange={handleCreateNote}
+              ref={wrapperRef}
+            />
+          </li>
+        }
+         <li className={`item item--${group}`}>Example key 1</li>
           <li className={`item item--${group}`}>Example key 2</li>
           <li className={`item item--${group}`}>Example key 3</li>
           <li className={`item item--${group}`}>Example key 4</li>
           <li className={`item item--${group}`}>Example key 5</li>
-          <li className={`item item--${group}`}>Example key 6</li>*/}
+          <li className={`item item--${group}`}>Example key 6</li>
         </ul>
       </div>
-      <div className='box__button-add'>
+      <button className='box__button-add' onClick={() => enableCreateNoteMode()}>
         <i className="material-icons">add_circle_outline</i>
-      </div>
+      </button>
     </div>
   </>
 }

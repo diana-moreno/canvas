@@ -95,6 +95,9 @@ header h1 {
   right: 9px;
   color: #719abb;
   cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
 }
 .box__button-add:hover {
   transform: scale(1.3);
