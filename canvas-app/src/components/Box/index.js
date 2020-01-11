@@ -25,8 +25,8 @@ export default function ({ index, title, icon, group, hint }) {
       if (ref.current && !ref.current.contains(event.target)) {
         !note && setIsNewNote(false)
 /*        if (note) {
-          const newTask = await createTask(token, status, note)
-          onCreateNewTask(newTask, status) // PARA LLEVARLO AL PADRE
+          const newNote = await createNote(group, note, index)
+          onCreateNewNote(newNote, group, index)
         }*/
         setIsNewNote(false)
         setNote(null)

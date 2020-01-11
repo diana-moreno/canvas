@@ -4,35 +4,29 @@ import Header from '../Header'
 import Box from '../Box'
 import boxes from './constants.js'
 
-export default function () {
+const BoardSection = props => (
+  <section className={props.className}>
+    { props.boxes.map(box => {
+      const { index, icon, title, group, hint } = box
+      return <Box
+        index={index}
+        icon={icon}
+        title={title}
+        group={group}
+        hint={hint}
+        key={index}
+      />
+    }
+    )}
+  </section>
+)
 
+export default function () {
   return <>
     <Header />
     <main className='board'>
-      <section className='board__top'>
-        { boxes
-            .slice(0, 7)
-            .map(box => <Box
-              index={box.index}
-              icon={box.icon}
-              title={box.title}
-              group={box.group}
-              hint={box.hint}
-              key={box.index}
-        />) }
-      </section>
-      <section className='board__bottom'>
-        { boxes
-            .slice(7, 9)
-            .map(box => <Box
-              index={box.index}
-              icon={box.icon}
-              title={box.title}
-              group={box.group}
-              hint={box.hint}
-              key={box.index}
-        />) }
-      </section>
+      <BoardSection boxes={boxes.slice(0, 7)} className='board__top' />
+      <BoardSection boxes={boxes.slice(7, 9)} className='board__bottom' />
     </main>
   </>
 }
