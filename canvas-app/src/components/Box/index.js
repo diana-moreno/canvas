@@ -4,10 +4,10 @@ import Header from '../Header'
 
 export default function ({ index, title, icon, group, hint }) {
   const [isNewNote, setIsNewNote] = useState(false)
-  const [note, setNote] = useState(null)
+  const [description, setDescription] = useState(null)
 
   useEffect(() => {
-    setNote(null)
+    setDescription(null)
     isNewNote && wrapperRef.current.focus()
   }, [isNewNote])
 
@@ -16,20 +16,20 @@ export default function ({ index, title, icon, group, hint }) {
   }
 
   function handleCreateNote(event) {
-    const note = event.target.value
-    setNote(note)
+    const description = event.target.value
+    setDescription(description)
   }
 
   function useOutsideAlerter(ref) {
     async function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        !note && setIsNewNote(false)
+        !description && setIsNewNote(false)
 /*        if (note) {
-          const newNote = await createNote(group, note, index)
+          const newNote = await createNote(description, index)
           onCreateNewNote(newNote, group, index)
         }*/
         setIsNewNote(false)
-        setNote(null)
+        setDescription(null)
       }
     }
     useEffect(() => {
