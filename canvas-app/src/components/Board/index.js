@@ -7,14 +7,14 @@ import boxes from './constants.js'
 const BoardSection = props => (
   <section className={props.className}>
     { props.boxes.map(box => {
-      const { index, icon, title, group, hint } = box
+      const { indexBox, icon, title, group, hint } = box
       return <Box
-        index={index}
+        indexBox={indexBox}
         icon={icon}
         title={title}
         group={group}
         hint={hint}
-        key={index}
+        key={indexBox}
       />
     }
     )}

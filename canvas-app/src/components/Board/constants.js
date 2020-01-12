@@ -1,61 +1,61 @@
 const boxes = [
   {
-    index: 0,
+    indexBox: 0,
     icon: 'all_inclusive',
     title: 'KEY PARTNERS',
     group: 'how',
     hint: "The most important activities in executing a company's value proposition."
   },
   {
-    index: 1,
+    indexBox: 1,
     icon: 'work_outline',
     title: 'KEY ACTIVITIES',
     group: 'how',
     hint: "The resources that are necessary to create value for the customer. They are considered assets to a company that are needed to sustain and support the business. These resources could be human, financial, physical and intellectual."
   },
   {
-    index: 2,
+    indexBox: 2,
     icon: 'location_city',
     title: 'KEY RESOURCES',
     group: 'how',
     hint: "The resources that are necessary to create value for the customer. They are considered assets to a company that are needed to sustain and support the business. These resources could be human, financial, physical and intellectual."
   },
   {
-    index: 3,
+    indexBox: 3,
     icon: 'redeem',
     title: 'VALUE PROPOSITIONS',
     group: 'what',
     hint: "The collection of products and services a business offers to meet the needs of its customers. According to Osterwalder (2004), a company's value proposition is what distinguishes it from its competitors. The value proposition provides value through various elements such as newness, performance, customization, getting the job done, design, brand/status, price, cost reduction, risk reduction, accessibility, and convenience/usability."
   },
   {
-    index: 4,
+    indexBox: 4,
     icon: 'group',
     title: 'CUSTOMER RELATIONSHIPS',
     group: 'with',
     hint: "To ensure the survival and success of any businesses, companies must identify the type of relationship they want to create with their customer segments."
   },
   {
-    index: 5,
+    indexBox: 5,
     icon: 'local_shipping',
     title: 'CHANNELS',
     group: 'with',
     hint: "A company can deliver its value proposition to its targeted customers through different channels. Effective channels will distribute a company's value proposition in ways that are fast, efficient and cost-effective. An organization can reach its clients through its own channels (store front), partner channels (major distributors), or a combination of both"
   },
   {
-    index: 6,
+    indexBox: 6,
     icon: 'list_alt',
     title: 'CUSTOMER SEGMENTS',
     group: 'with',
     hint: "To build an effective business model, a company must identify which customers it tries to serve. Various sets of customers can be segmented based on their different needs and attributes to ensure appropriate implementation of corporate strategy to meet the characteristics of selected groups of clients."
   },
   {
-    index: 7,
+    indexBox: 7,
     icon: 'money_off',
     title: 'COST STRUCTURE', group: 'how-many',
     hint: "This describes the most important monetary consequences while operating under different business models."
   },
   {
-    index: 8,
+    indexBox: 8,
     icon: 'attach_money',
     title: 'REVENUE STREAMS',
     group: 'how-many',

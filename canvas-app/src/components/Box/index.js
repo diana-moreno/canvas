@@ -2,12 +2,12 @@ import React, {useState, useEffect, useRef} from 'react'
 import './index.sass'
 import Header from '../Header'
 
-export default function ({ index, title, icon, group, hint }) {
+export default function ({ indexBox, title, icon, group, hint }) {
   const [isNewNote, setIsNewNote] = useState(false)
-  const [note, setNote] = useState(null)
+  const [description, setDescription] = useState(null)
 
   useEffect(() => {
-    setNote(null)
+    setDescription(null)
     isNewNote && wrapperRef.current.focus()
   }, [isNewNote])
 
@@ -16,20 +16,20 @@ export default function ({ index, title, icon, group, hint }) {
   }
 
   function handleCreateNote(event) {
-    const note = event.target.value
-    setNote(note)
+    const description = event.target.value
+    setDescription(description)
   }
 
   function useOutsideAlerter(ref) {
     async function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        !note && setIsNewNote(false)
+        !description && setIsNewNote(false)
 /*        if (note) {
-          const newNote = await createNote(group, note, index)
-          onCreateNewNote(newNote, group, index)
+          const newNote = await createNote(description, indexBox)
+          onCreateNewNote(newNote, group, indexBox)
         }*/
         setIsNewNote(false)
-        setNote(null)
+        setDescription(null)
       }
     }
     useEffect(() => {
@@ -46,7 +46,7 @@ export default function ({ index, title, icon, group, hint }) {
   useOutsideAlerter(wrapperRef);
 
   return <>
-    <div className={`box box-${index}`}>
+    <div className={`box box-${indexBox}`}>
       <div className='box__title'>
         <i className="material-icons">{icon}</i>
         <h3>{title}</h3>
