@@ -4,7 +4,7 @@ import logic from '../../logic'
 const { createNote } = logic
 
 
-export default function ({ indexBox, title, icon, group, hint }) {
+export default function ({ indexBox, title, icon, group, hint, notes}) {
   const [isNewNote, setIsNewNote] = useState(false)
   const [description, setDescription] = useState(null)
 
@@ -56,23 +56,19 @@ export default function ({ indexBox, title, icon, group, hint }) {
       </div>
       <div className='box__content'>
         <ul className='box__list-items'>
-        { isNewNote &&
-          <li className={`item item-${group} item_new`}>
-            <input
-              type='text'
-              className='item__input'
-              placeholder='add new note...'
-              onChange={handleCreateNote}
-              ref={wrapperRef}
-            />
-          </li>
-        }
-         <li className={`item item--${group}`}>Example key 1</li>
-          <li className={`item item--${group}`}>Example key 2</li>
-          <li className={`item item--${group}`}>Example key 3</li>
-          <li className={`item item--${group}`}>Example key 4</li>
-          <li className={`item item--${group}`}>Example key 5</li>
-          <li className={`item item--${group}`}>Example key 6</li>
+          { isNewNote &&
+            <li className={`item item-${group} item_new`}>
+              <input
+                type='text'
+                className='item__input'
+                placeholder='add new note...'
+                onChange={handleCreateNote}
+                ref={wrapperRef}
+              />
+            </li>
+          }
+          { notes && notes.map(note => <li className={`item item--${group}`}>{note.description}</li>)
+          }
         </ul>
       </div>
       <button className='box__button-add' onClick={() => enableCreateNoteMode()}>

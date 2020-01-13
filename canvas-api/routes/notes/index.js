@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createNote, deleteNote, editNote } = require('../../logic')
+const { createNote, deleteNote, editNote, listNotes } = require('../../logic')
 const bodyParser = require('body-parser')
 const { errors: { NotFoundError } } = require('canvas-utils')
 
@@ -9,7 +9,7 @@ const router = Router()
 router.post('/', jsonBodyParser, (req, res) => {
   try {
   const { body: { indexBox, description } } = req
-    createNote(indexBox, description)
+    createNote(Number(indexBox), description)
       .then((note) => res.json({ note }))
       .catch(error => {
         const { message } = error
@@ -21,7 +21,7 @@ router.post('/', jsonBodyParser, (req, res) => {
   }
 })
 
-router.delete('/:id', jsonBodyParser, (req, res) => {
+router.delete('/:id', (req, res) => {
   try {
   const { params: { id } } = req
     deleteNote(id)
@@ -49,6 +49,20 @@ router.patch('/:id', jsonBodyParser, (req, res) => {
 
         if (error instanceof NotFoundError)
           return res.status(404).json({ message })
+
+        res.status(500).json({ message })
+      })
+  } catch ({ message }) {
+    res.status(400).json({ message })
+  }
+})
+
+router.get('/', (req, res) => {
+  try {
+    listNotes()
+      .then((notes) => res.json({ notes }))
+      .catch(error => {
+        const { message } = error
 
         res.status(500).json({ message })
       })

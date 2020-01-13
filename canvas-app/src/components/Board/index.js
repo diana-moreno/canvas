@@ -4,7 +4,7 @@ import Header from '../Header'
 import Box from '../Box'
 import boxes from './constants.js'
 import logic from '../../logic'
-/*const { listNotes } = logic*/
+const { listNotes } = logic
 
 
 const BoardSection = function({ className, boxes, notes }){
@@ -18,7 +18,7 @@ const BoardSection = function({ className, boxes, notes }){
         group={group}
         hint={hint}
         key={indexBox}
-        notes={notes.filter(elem => elem.indexBox === indexBox)}
+        notes={notes && notes.filter(elem => elem.indexBox === indexBox)}
       />
     }
     )}
@@ -26,15 +26,14 @@ const BoardSection = function({ className, boxes, notes }){
 }
 
 export default function () {
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState()
 
   useEffect(() => {
     (async () => {
- /*     const notes = await listNotes()
-      setNotes(notes)*/
-/*      setUpdate(false)*/
+      const notes = await listNotes()
+      setNotes(notes)
     })()
-  }, [/*update*/])
+  }, [notes])
 
   return <>
     <Header />
