@@ -36,10 +36,11 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
   function useOutside(ref) {
     async function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        !description && setIsNewNote(false)
         if (description) {
           onCreateNewNote(indexBox, description)
           disableCreateNoteMode()
+        } else {
+          setIsNewNote(false)
         }
       }
     }
@@ -87,12 +88,11 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
                 onEditNote={onEditNote}
                 onDeleteNote={onDeleteNote}
               />
-            }
-            )
+            })
           }
         </ul>
       </div>
-      <button className='box__button-add' onClick={() => enableCreateNoteMode()}>
+      <button className='box__button-add' onClick={enableCreateNoteMode}>
         <i className="material-icons">add_circle_outline</i>
       </button>
     </div>
