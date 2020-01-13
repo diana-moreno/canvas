@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react'
 import './index.sass'
-import Header from '../Header'
+import logic from '../../logic'
+const { createNote } = logic
+
 
 export default function ({ indexBox, title, icon, group, hint }) {
   const [isNewNote, setIsNewNote] = useState(false)
@@ -24,10 +26,10 @@ export default function ({ indexBox, title, icon, group, hint }) {
     async function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         !description && setIsNewNote(false)
-/*        if (note) {
-          const newNote = await createNote(indexBox, description)
-          onCreateNewNote(newNote, group, indexBox)
-*/
+        if (description) {
+          const note = await createNote(indexBox, description)
+          /*onCreateNewNote(note, group, indexBox)*/
+        }
         setIsNewNote(false)
         setDescription(null)
       }
@@ -79,5 +81,3 @@ export default function ({ indexBox, title, icon, group, hint }) {
     </div>
   </>
 }
-
-

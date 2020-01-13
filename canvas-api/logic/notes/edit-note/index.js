@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('canvas-utils')
-const { ObjectId, models: { Note } } = require('tasks-data')
+const { ObjectId, models: { Note } } = require('canvas-data')
 
 module.exports = function(id, newDescription) {
   validate.string(id)
