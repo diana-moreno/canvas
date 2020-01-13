@@ -1,15 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react'
 import './index.sass'
-import logic from '../../logic'
-const { createNote } = logic
+import Note from '../Note'
 
-
-export default function ({ indexBox, title, icon, group, hint, notes}) {
+export default function ({ indexBox, title, icon, group, hint, notes, onCreateNewNote }) {
   const [isNewNote, setIsNewNote] = useState(false)
   const [description, setDescription] = useState(null)
 
   useEffect(() => {
-    setDescription(null)
+    // active focus when is a new note
     isNewNote && wrapperRef.current.focus()
   }, [isNewNote])
 
@@ -17,20 +15,20 @@ export default function ({ indexBox, title, icon, group, hint, notes}) {
     setIsNewNote(true)
   }
 
+  function disableCreateNoteMode() {
+    setIsNewNote(false)
+    setDescription(null)
+  }
+
   function handleCreateNote(event) {
     const description = event.target.value
     setDescription(description)
   }
 
-  function resetNewNote() {
-    setIsNewNote(false)
-    setDescription(null)
-  }
-
   async function handleKeyDown(event) {
     if (event.key === 'Enter' && description) {
-      await createNote(indexBox, description)
-      resetNewNote()
+      onCreateNewNote(indexBox, description)
+      disableCreateNoteMode()
     }
   }
 
@@ -39,9 +37,8 @@ export default function ({ indexBox, title, icon, group, hint, notes}) {
       if (ref.current && !ref.current.contains(event.target)) {
         !description && setIsNewNote(false)
         if (description) {
-          await createNote(indexBox, description)
-          /*onCreateNewNote(note, group, indexBox)*/
-          resetNewNote()
+          onCreateNewNote(indexBox, description)
+          disableCreateNoteMode()
         }
       }
     }
@@ -57,7 +54,6 @@ export default function ({ indexBox, title, icon, group, hint, notes}) {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
-
 
   return <>
     <div className={`box box-${indexBox}`}>
@@ -80,7 +76,13 @@ export default function ({ indexBox, title, icon, group, hint, notes}) {
               />
             </li>
           }
-          { notes && notes.map(note => <li className={`item item--${group}`}>{note.description}</li>)
+          { notes && notes.map(note =>
+              <Note
+                group={group}
+                description={note.description}
+                key={note._id}
+              />
+            )
           }
         </ul>
       </div>
