@@ -9,7 +9,7 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
 
   useEffect(() => {
     // active focus when is a new note
-    isNewNote && wrapperRef.current.focus()
+    isNewNote && ref.current.focus()
   }, [isNewNote])
 
   function enableCreateNoteMode() {
@@ -26,7 +26,7 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
     setDescription(description)
   }
 
-  async function handleKeyDown(event) {
+  function handleKeyDown(event) {
     if (event.key === 'Enter' && description) {
       onCreateNewNote(indexBox, description)
       disableCreateNoteMode()
@@ -34,12 +34,13 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
   }
 
   function useOutside(ref) {
-    async function handleClickOutside(event) {
+    function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        !description && setIsNewNote(false)
         if (description) {
           onCreateNewNote(indexBox, description)
           disableCreateNoteMode()
+        } else {
+          setIsNewNote(false)
         }
       }
     }
@@ -53,8 +54,8 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
     })
   }
 
-  const wrapperRef = useRef(null)
-  useOutside(wrapperRef)
+  const ref = useRef(null)
+  useOutside(ref)
 
   return <>
     <div className={`box box-${indexBox}`}>
@@ -72,7 +73,7 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
                 className='item__input'
                 placeholder='add new note...'
                 onChange={handleCreateNote}
-                ref={wrapperRef}
+                ref={ref}
                 onKeyDown={handleKeyDown}
               />
             </li>
@@ -87,12 +88,11 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
                 onEditNote={onEditNote}
                 onDeleteNote={onDeleteNote}
               />
-            }
-            )
+            })
           }
         </ul>
       </div>
-      <button className='box__button-add' onClick={() => enableCreateNoteMode()}>
+      <button className='box__button-add' onClick={enableCreateNoteMode}>
         <i className="material-icons">add_circle_outline</i>
       </button>
     </div>

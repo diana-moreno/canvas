@@ -20,8 +20,12 @@ export default function () {
   }, [update])
 
   async function handleCreateNote(indexBox, description) {
-    const note = await createNote(indexBox, description)
-    setUpdate(true)
+    try {
+      await createNote(indexBox, description)
+      setUpdate(true)
+    } catch({ message }) {
+      console.log(message)
+    }
   }
 
   async function handleEditNote(id, description) {
@@ -35,7 +39,7 @@ export default function () {
 
   async function handleDeleteNote(id) {
     try {
-      const note = await deleteNote(id)
+      await deleteNote(id)
       setUpdate(true)
     } catch({ message }) {
       console.log(message)
