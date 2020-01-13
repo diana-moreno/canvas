@@ -2,9 +2,10 @@ import React, {useState, useEffect, useRef} from 'react'
 import './index.sass'
 import Note from '../Note'
 
-export default function ({ indexBox, title, icon, group, hint, notes, onCreateNewNote }) {
+export default function ({ indexBox, title, icon, group, hint, notes, onCreateNewNote, onEditNote, onDeleteNote }) {
   const [isNewNote, setIsNewNote] = useState(false)
   const [description, setDescription] = useState(null)
+
 
   useEffect(() => {
     // active focus when is a new note
@@ -48,12 +49,12 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
       return () => {
         // Unbind the event listener on clean up (componentDidUnmount)
         document.removeEventListener("mousedown", handleClickOutside);
-      };
-    });
+      }
+    })
   }
 
-  const wrapperRef = useRef(null);
-  useOutside(wrapperRef);
+  const wrapperRef = useRef(null)
+  useOutside(wrapperRef)
 
   return <>
     <div className={`box box-${indexBox}`}>
@@ -65,7 +66,7 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
       <div className='box__content'>
         <ul className='box__list-items'>
           { isNewNote &&
-            <li className={`item item-${group} item_new`}>
+            <li className={`item item__new`}>
               <input
                 type='text'
                 className='item__input'
@@ -76,12 +77,17 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
               />
             </li>
           }
-          { notes && notes.map(note =>
-              <Note
+          { notes && notes.map(note => {
+              const { description, _id: id} = note
+              return <Note
                 group={group}
-                description={note.description}
-                key={note._id}
+                description={description}
+                key={id}
+                id={id}
+                onEditNote={onEditNote}
+                onDeleteNote={onDeleteNote}
               />
+            }
             )
           }
         </ul>

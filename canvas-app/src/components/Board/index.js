@@ -5,22 +5,41 @@ import BoardSection from '../BoardSection'
 import constants from './constants.js'
 import logic from '../../logic'
 const { boxes, boardSections } = constants
-const { listNotes, createNote } = logic
+const { listNotes, createNote, editNote, deleteNote } = logic
 
 export default function () {
   const [notes, setNotes] = useState()
-  const [newNote, setNewNote] = useState()
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     (async () => {
       const notes = await listNotes()
       setNotes(notes)
+      setUpdate(false)
     })()
-  }, [newNote])
+  }, [update])
 
   async function handleCreateNote(indexBox, description) {
     const note = await createNote(indexBox, description)
-    setNewNote(note)
+    setUpdate(true)
+  }
+
+  async function handleEditNote(id, description) {
+    try {
+      await editNote(id, description)
+      setUpdate(true)
+    } catch({ message }) {
+      console.log(message)
+    }
+  }
+
+  async function handleDeleteNote(id) {
+    try {
+      const note = await deleteNote(id)
+      setUpdate(true)
+    } catch({ message }) {
+      console.log(message)
+    }
   }
 
   return <>
@@ -33,6 +52,8 @@ export default function () {
             className={`board__${position}`}
             notes={notes}
             onCreateNewNote={handleCreateNote}
+            onEditNote={handleEditNote}
+            onDeleteNote={handleDeleteNote}
             key={position}
           />
         })

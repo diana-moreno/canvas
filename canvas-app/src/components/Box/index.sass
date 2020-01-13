@@ -87,11 +87,12 @@
   color: #4b3d3c
   cursor: pointer
 
-  &_new
+  &__new
     box-sizing: border-box
     border: 2px solid #719abb
     background-color: white
     padding: 0.5rem
+    width: 16rem
 
   &__input
     background: transparent
@@ -101,8 +102,20 @@
     font-family: "Comfortaa", cursive
     font-size: 1rem
 
-  &:hover
+  &--big:hover
     transform: scale(1.1)
+
+  &__edit
+    display: inline-flex
+    justify-content: space-between
+    width: fit-content
+    box-sizing: border-box
+    border: 2px solid #719abb
+    background-color: white
+    padding: 0.4rem
+
+  &__delete
+    color: red
 
   &--what
     background-color: #feeaeb

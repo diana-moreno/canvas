@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '../Box'
 
-export default function({ className, boxes, notes, onCreateNewNote }) {
+export default function({ className, boxes, notes, onCreateNewNote, onEditNote,onDeleteNote }) {
   return <section className={className}>
     { boxes.map(box => {
       const { indexBox, icon, title, group, hint } = box
@@ -14,6 +14,8 @@ export default function({ className, boxes, notes, onCreateNewNote }) {
         key={indexBox}
         notes={notes && notes.filter(elem => elem.indexBox === indexBox)}
         onCreateNewNote={onCreateNewNote}
+        onEditNote={onEditNote}
+        onDeleteNote={onDeleteNote}
       /> })
     }
   </section>
