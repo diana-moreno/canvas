@@ -25,9 +25,9 @@ export default function ({ indexBox, title, icon, group, hint }) {
       if (ref.current && !ref.current.contains(event.target)) {
         !description && setIsNewNote(false)
 /*        if (note) {
-          const newNote = await createNote(description, indexBox)
+          const newNote = await createNote(indexBox, description)
           onCreateNewNote(newNote, group, indexBox)
-        }*/
+*/
         setIsNewNote(false)
         setDescription(null)
       }
