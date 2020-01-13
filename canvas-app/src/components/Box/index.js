@@ -22,16 +22,27 @@ export default function ({ indexBox, title, icon, group, hint, notes}) {
     setDescription(description)
   }
 
+  function resetNewNote() {
+    setIsNewNote(false)
+    setDescription(null)
+  }
+
+  async function handleKeyDown(event) {
+    if (event.key === 'Enter' && description) {
+      await createNote(indexBox, description)
+      resetNewNote()
+    }
+  }
+
   function useOutsideAlerter(ref) {
     async function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         !description && setIsNewNote(false)
         if (description) {
-          const note = await createNote(indexBox, description)
+          await createNote(indexBox, description)
           /*onCreateNewNote(note, group, indexBox)*/
+          resetNewNote()
         }
-        setIsNewNote(false)
-        setDescription(null)
       }
     }
     useEffect(() => {
@@ -46,6 +57,7 @@ export default function ({ indexBox, title, icon, group, hint, notes}) {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
+
 
   return <>
     <div className={`box box-${indexBox}`}>
@@ -64,6 +76,7 @@ export default function ({ indexBox, title, icon, group, hint, notes}) {
                 placeholder='add new note...'
                 onChange={handleCreateNote}
                 ref={wrapperRef}
+                onKeyDown={handleKeyDown}
               />
             </li>
           }
