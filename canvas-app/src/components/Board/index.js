@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react'
 import './index.sass'
 import Header from '../Header'
 import BoardSection from '../BoardSection'
-import boxes from './constants.js'
+import constants from './constants.js'
 import logic from '../../logic'
+const { boxes, boardSections } = constants
 const { listNotes, createNote } = logic
 
 export default function () {
@@ -25,18 +26,17 @@ export default function () {
   return <>
     <Header />
     <main className='board'>
-      <BoardSection
-        boxes={boxes.slice(0, 7)}
-        className='board__top'
-        notes={notes}
-        onCreateNewNote={handleCreateNote}
-      />
-      <BoardSection
-        boxes={boxes.slice(7, 9)}
-        className='board__bottom'
-        notes={notes}
-        onCreateNewNote={handleCreateNote}
-      />
+      { boardSections.map(section => {
+        const { position, startIndex, endIndex } = section
+          return <BoardSection
+            boxes={boxes.slice(startIndex, endIndex)}
+            className={`board__${position}`}
+            notes={notes}
+            onCreateNewNote={handleCreateNote}
+            key={position}
+          />
+        })
+      }
     </main>
   </>
 }

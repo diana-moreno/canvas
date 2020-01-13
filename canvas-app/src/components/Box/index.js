@@ -32,7 +32,7 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
     }
   }
 
-  function useOutsideAlerter(ref) {
+  function useOutside(ref) {
     async function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         !description && setIsNewNote(false)
@@ -53,7 +53,7 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
   }
 
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  useOutside(wrapperRef);
 
   return <>
     <div className={`box box-${indexBox}`}>

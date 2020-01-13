@@ -1,3 +1,16 @@
+const boardSections = [
+  {
+    position: 'top',
+    startIndex: 0,
+    endIndex: 7
+  },
+  {
+    position: 'bottom',
+    startIndex: 7,
+    endIndex: 9
+  }
+]
+
 const boxes = [
   {
     indexBox: 0,
@@ -63,4 +76,4 @@ const boxes = [
   }
 ]
 
-export default boxes
+export default { boxes, boardSections }
