@@ -31,7 +31,7 @@ describe('logic - delete note', () => {
     await deleteNote(id)
     note = await Note.findById(id)
 
-/*    expect(note).not.toBeDefined()*/
+    expect(note).toBeNull()
   })
 
   it('should fail on wrong user id', async () => {

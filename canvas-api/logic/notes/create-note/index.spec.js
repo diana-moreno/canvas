@@ -19,7 +19,6 @@ describe('logic - create note', () => {
   })
 
   it('should succeed on create a note', async () => {
-
     const noteId = await createNote(indexBox, description)
 
     expect(noteId).to.exist

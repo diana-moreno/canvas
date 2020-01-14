@@ -34,7 +34,6 @@ describe('logic - list notes', () => {
   })
 
   it('should succeed on listing notes', async () => {
-
     const notes = await listNotes()
 
     expect(notes).to.exist

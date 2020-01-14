@@ -36,7 +36,7 @@ describe('logic - edit note', () => {
     expect(note).toBeDefined()
     expect(note.id.toString()).toBe(id)
     expect(note.description).toBe(newDescription)
-/*    expect(note.description).notToBe(description)*/
+    expect(note.description).not.toMatch(description)
     expect(note.indexBox).toBe(indexBox)
   })
 
