@@ -27,28 +27,28 @@ export default function () {
   async function handleCreateNote(indexBox, description) {
     try {
       await createNote(indexBox, description)
-      setUpdate(true)
     } catch({ message }) {
       setError(message)
     }
+    setUpdate(true)
   }
 
   async function handleEditNote(id, description) {
     try {
       await editNote(id, description)
-      setUpdate(true)
     } catch({ message }) {
       setError(message)
     }
+    setUpdate(true)
   }
 
   async function handleDeleteNote(id) {
     try {
       await deleteNote(id)
-      setUpdate(true)
     } catch({ message }) {
       setError(message)
     }
+    setUpdate(true)
   }
 
   function handleBack() {

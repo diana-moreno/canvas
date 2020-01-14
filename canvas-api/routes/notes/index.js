@@ -7,11 +7,9 @@ const jsonBodyParser = bodyParser.json()
 const router = Router()
 
 router.post('/', jsonBodyParser, async (req, res) => {
+  const { body: { indexBox, description } } = req
   try {
-    const { body: { indexBox, description } } = req
     const note = await createNote(Number(indexBox), description)
-    res.json(note)
-
   } catch (error) {
     const { message } = error
     if(error instanceof ContentError) {
@@ -20,14 +18,13 @@ router.post('/', jsonBodyParser, async (req, res) => {
       res.status(500).json(message)
     }
   }
+  res.json(note)
 })
 
 router.delete('/:id', async (req, res) => {
+  const { params: { id } } = req
   try {
-    const { params: { id } } = req
     await deleteNote(id)
-    res.status(201).end()
-
   } catch (error) {
     const { message } = error
     if (error instanceof NotFoundError) {
@@ -38,14 +35,13 @@ router.delete('/:id', async (req, res) => {
       res.status(500).json(message)
     }
   }
+  res.status(201).end()
 })
 
 router.patch('/:id', jsonBodyParser, async (req, res) => {
+  const { params: { id }, body: { newDescription } } = req
   try {
-    const { params: { id }, body: { newDescription } } = req
     await editNote(id, newDescription)
-    res.status(201).end()
-
   } catch (error) {
     const { message } = error
     if (error instanceof NotFoundError) {
@@ -56,17 +52,17 @@ router.patch('/:id', jsonBodyParser, async (req, res) => {
       res.status(500).json(message)
     }
   }
+  res.status(201).end()
 })
 
 router.get('/', async (req, res) => {
   try {
     const notes = await listNotes()
-    res.json(notes)
-
   } catch (error) {
     const { message } = error
     res.status(500).json(message)
   }
+  res.json(notes)
 })
 
 module.exports = router

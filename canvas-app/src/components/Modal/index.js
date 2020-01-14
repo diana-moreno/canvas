@@ -13,7 +13,8 @@ export default function({ error, title, hint, onBack }) {
         <button
           className='modal__button'
           onClick={onBack}
-        >Ok</button>
+        >Ok
+        </button>
       </div>
     </section>
   )

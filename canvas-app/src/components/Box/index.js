@@ -2,7 +2,9 @@ import React, {useState, useEffect, useRef} from 'react'
 import './index.sass'
 import Note from '../Note'
 
-export default function ({ indexBox, title, icon, group, hint, notes, onCreateNewNote, onEditNote, onDeleteNote, enableHintMode }) {
+export default function (props) {
+  const { indexBox, title, icon, group, hint, notes, onCreateNewNote, onEditNote, onDeleteNote, enableHintMode } = props
+
   const [isNewNote, setIsNewNote] = useState(false)
   const [description, setDescription] = useState(null)
 
@@ -65,7 +67,12 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
       <div className='box__title'>
         <i className="material-icons">{icon}</i>
         <h3>{title}</h3>
-        <i title={hint} className="material-icons box__help" onClick={handleHint} >help_outline</i>
+        <i
+          title={hint}
+          className="material-icons box__help"
+          onClick={handleHint}
+        >help_outline
+        </i>
       </div>
       <div className='box__content'>
         <ul className='box__list-items'>

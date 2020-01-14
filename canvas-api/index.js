@@ -12,5 +12,5 @@ api.use(cors())
 api.use('/notes', notes)
 
 database
-    .connect(DB_URL)
-    .then(() => api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`)))
+  .connect(DB_URL)
+  .then(() => api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`)))
