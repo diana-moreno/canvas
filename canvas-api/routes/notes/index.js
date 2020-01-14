@@ -64,7 +64,10 @@ router.get('/', async (req, res) => {
     res.json(notes)
 
   } catch (error) {
+<<<<<<< HEAD
     const { message } = error
+=======
+>>>>>>> 83395954a75e9b238cc06068b55dc830ead15128
     res.status(500).json(message)
   }
 })
