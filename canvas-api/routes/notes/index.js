@@ -58,6 +58,7 @@ router.patch('/:id', jsonBodyParser, (req, res) => {
 })
 
 router.get('/', (req, res) => {
+  debugger
   try {
     listNotes()
       .then((notes) => res.json({ notes }))

@@ -13,7 +13,7 @@ export default function () {
 
   useEffect(() => {
     (async () => {
-      const notes = await listNotes()
+      const { notes } = await listNotes()
       setNotes(notes)
       setUpdate(false)
     })()
@@ -21,7 +21,7 @@ export default function () {
 
   async function handleCreateNote(indexBox, description) {
     try {
-      await createNote(indexBox, description)
+      const { note } = await createNote(indexBox, description)
       setUpdate(true)
     } catch({ message }) {
       console.log(message)

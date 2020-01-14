@@ -1,4 +1,3 @@
-import call from '../../utils/call'
 const { validate } = require('canvas-utils')
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -9,7 +8,7 @@ export default function(indexBox, description) {
   validate.string.notVoid('description', description)
 
   return (async () => {
-    const res = await call(`${API_URL}/notes`, {
+    const res = await fetch(`${API_URL}/notes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -17,7 +16,7 @@ export default function(indexBox, description) {
       body: JSON.stringify({ indexBox, description })
     })
 
-    if (res.status === 200) return JSON.parse(res.body).note
+    if (res.status === 200) return res.json()
     throw new Error(JSON.parse(res.body).message)
   })()
 }
