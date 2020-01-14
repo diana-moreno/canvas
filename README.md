@@ -8,7 +8,6 @@ Business Model Canvas is a strategic management and lean startup template for de
 
 It is a visual chart with elements describing a firm's or product's value proposition, infrastructure, customers, and finances. It assists firms in aligning their activities by illustrating potential trade-offs.
 
-
 You can run the deployed project here: https://diana-moreno.github.io/canvas
 It's responsive, so you can open it on the device you prefer!
 
