@@ -15,6 +15,6 @@ export default function(id) {
 
     if (res.status === 201) return
     if (res.status === 404) throw new NotFoundError('Not found. It is not possible to delete a note.')
-    throw new Error('Error connecting.')
+    throw new Error('Error conexion.')
   })()
 }

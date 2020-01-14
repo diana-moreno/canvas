@@ -9,7 +9,7 @@ const deleteNote = require('.')
 describe('logic - delete note', () => {
   before(() => database.connect(DB_URL_TEST))
 
-  let id
+  let id, indexBox, description
 
   beforeEach(async () => {
     await Promise.all([Note.deleteMany()])

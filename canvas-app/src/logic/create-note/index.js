@@ -18,6 +18,6 @@ export default function(indexBox, description) {
 
     if (res.status === 200) return res.json()
     if (res.status === 404) throw new NotFoundError('Not found. It is not possible to create a note.')
-    throw new Error('Error connecting.')
+    throw new Error('Error conexion.')
   })()
 }

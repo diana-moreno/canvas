@@ -12,6 +12,6 @@ export default function() {
 
     if (res.status === 200) return res.json()
     if (res.status === 404) throw new NotFoundError('Not found. It is not possible to list notes.')
-    throw new Error('Error connecting.')
+    throw new Error('Error conexion.')
   })()
 }
