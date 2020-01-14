@@ -15,5 +15,6 @@ module.exports = function(id, newDescription) {
     if (!note) throw new NotFoundError(`note with id ${id} does not exist`)
 
     await Note.updateOne({ _id: ObjectId(id) }, { description: newDescription })
+
   })()
 }
