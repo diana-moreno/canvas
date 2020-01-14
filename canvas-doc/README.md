@@ -11,6 +11,10 @@ It is a visual chart with elements describing a firm's or product's value propos
 You can run the deployed project here: https://diana-moreno.github.io/canvas
 It's responsive, so you can open it on the device you prefer!
 
+## Functional Description
+
+![Main](./canvas-doc/img/use-cases.png)
+
 ## Technical Description
 
 Frontend: React (javascript), CSS-SASS, BEM, Jest
