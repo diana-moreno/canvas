@@ -9,7 +9,7 @@ module.exports = function(id) {
   return (async () => {
     const note = await Note.findById(id)
 
-    if (!note) throw new NotFoundError(`note with id ${id} does not exist`)
+    if (!note) throw new NotFoundError(`note with id ${id} not found`)
 
     await Note.deleteOne({ _id: ObjectId(id) })
   })()
