@@ -1,6 +1,7 @@
 # Canvas
 
 ![Main](./img/canvas.png)
+Linkedin Canvas example
 
 ## Introduction
 
@@ -50,7 +51,7 @@ npm i
 
 You need to keep opened 3 terminal windows at the same time.
 
-1- From the folder you have installed the data base MongoDB. Enter in the forlder, and inside of 'bin', run the following command. This keeps your data base on.
+1- From the folder you have installed the database MongoDB. Enter in the forlder, and inside of 'bin', run the following command. This keeps your data base on.
 
 ➜  bin
 ```
@@ -94,7 +95,7 @@ npm run test:coverage
 
 We need to connect the test daba base from the backend, to the frontend test, so is needed to do a litle change in the file '.env' located in the folder 'canvas-api'.
 
-The folders '.env' are privated and included in '.gitignore' in a real proyect, but, in this project, I didn't included them for accesibility purposes.
+The folders '.env' are privated and included in '.gitignore' in a real proyect, but, in this project, I didn't include them for accesibility purposes.
 
 Switch the '#' to allow connect to test. Remember to restart the server after that:
 
