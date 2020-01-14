@@ -18,8 +18,12 @@ export default function () {
 
   useEffect(() => {
     (async () => {
-      const notes = await listNotes()
-      setNotes(notes)
+      try {
+        const notes = await listNotes()
+        setNotes(notes)
+      } catch({ message }) {
+        setError(message)
+      }
       setUpdate(false)
     })()
   }, [update])

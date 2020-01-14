@@ -10,6 +10,7 @@ router.post('/', jsonBodyParser, async (req, res) => {
   const { body: { indexBox, description } } = req
   try {
     const note = await createNote(Number(indexBox), description)
+    res.json(note)
   } catch (error) {
     const { message } = error
     if(error instanceof ContentError) {
@@ -18,7 +19,6 @@ router.post('/', jsonBodyParser, async (req, res) => {
       res.status(500).json(message)
     }
   }
-  res.json(note)
 })
 
 router.delete('/:id', async (req, res) => {
@@ -58,11 +58,11 @@ router.patch('/:id', jsonBodyParser, async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const notes = await listNotes()
+    res.json(notes)
   } catch (error) {
     const { message } = error
     res.status(500).json(message)
   }
-  res.json(notes)
 })
 
 module.exports = router
