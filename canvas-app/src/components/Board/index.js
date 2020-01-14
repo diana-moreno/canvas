@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './index.sass'
 import Header from '../Header'
 import BoardSection from '../BoardSection'
-import Feedback from '../Feedback'
+import Modal from '../Modal'
 import constants from './constants.js'
 import logic from '../../logic'
 const { boxes, boardSections } = constants
@@ -12,6 +12,8 @@ export default function () {
   const [notes, setNotes] = useState()
   const [update, setUpdate] = useState(false)
   const [error, setError] = useState()
+  const [isHintMode, setIsHintMode] = useState(false)
+  const [indexBox, setIndexBox] = useState()
 
   useEffect(() => {
     (async () => {
@@ -50,6 +52,12 @@ export default function () {
 
   function handleBack() {
     setError(null)
+    setIsHintMode(false)
+  }
+
+  function enableHintMode(indexBox) {
+    setIsHintMode(true)
+    setIndexBox(indexBox)
   }
 
   return <>
@@ -66,12 +74,12 @@ export default function () {
             onDeleteNote={handleDeleteNote}
             key={position}
             error={error}
+            enableHintMode={enableHintMode}
           />
         })
       }
-      {
-        error && <Feedback error={error} onBack={handleBack} />
-      }
+      { error && <Modal error={error} onBack={handleBack} /> }
+      { isHintMode && <Modal indexBox={indexBox} onBack={handleBack} /> }
     </main>
   </>
 }

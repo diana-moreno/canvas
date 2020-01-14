@@ -2,11 +2,9 @@ import React, {useState, useEffect, useRef} from 'react'
 import './index.sass'
 import Note from '../Note'
 
-
-export default function ({ indexBox, title, icon, group, hint, notes, onCreateNewNote, onEditNote, onDeleteNote }) {
+export default function ({ indexBox, title, icon, group, hint, notes, onCreateNewNote, onEditNote, onDeleteNote, enableHintMode }) {
   const [isNewNote, setIsNewNote] = useState(false)
   const [description, setDescription] = useState(null)
-
 
   useEffect(() => {
     // active focus when is a new note
@@ -58,12 +56,16 @@ export default function ({ indexBox, title, icon, group, hint, notes, onCreateNe
   const ref = useRef(null)
   useOutside(ref)
 
+  function handleHint() {
+    enableHintMode(indexBox)
+  }
+
   return <>
     <div className={`box box-${indexBox}`}>
       <div className='box__title'>
         <i className="material-icons">{icon}</i>
         <h3>{title}</h3>
-        <i title={hint} className="material-icons box__help">help_outline</i>
+        <i title={hint} className="material-icons box__help" onClick={handleHint} >help_outline</i>
       </div>
       <div className='box__content'>
         <ul className='box__list-items'>
