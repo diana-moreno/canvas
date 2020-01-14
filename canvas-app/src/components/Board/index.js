@@ -13,7 +13,7 @@ export default function () {
 
   useEffect(() => {
     (async () => {
-      const { notes } = await listNotes()
+      const notes = await listNotes()
       setNotes(notes)
       setUpdate(false)
     })()

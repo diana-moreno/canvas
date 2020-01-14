@@ -5,7 +5,7 @@ module.exports = function(id, newDescription) {
   validate.string(id)
   validate.string.notVoid('id', id)
   if (!ObjectId.isValid(id)) throw new ContentError(`${id} is not a valid id`)
-
+// 400
   validate.string(newDescription)
   validate.string.notVoid('newDescription', newDescription)
 
@@ -13,7 +13,8 @@ module.exports = function(id, newDescription) {
     const note = await Note.findById(id)
 
     if (!note) throw new NotFoundError(`note with id ${id} does not exist`)
-
+// 404
     await Note.updateOne({ _id: ObjectId(id) }, { description: newDescription })
+// 500
   })()
 }
