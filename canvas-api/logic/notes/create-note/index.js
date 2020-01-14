@@ -7,10 +7,9 @@ module.exports = function(indexBox, description) {
   validate.string(description)
   validate.string.notVoid('description', description)
 
-
   return (async () => {
     const note = await Note.create({ indexBox, description })
 
-    return note
+    return note.id
   })()
 }

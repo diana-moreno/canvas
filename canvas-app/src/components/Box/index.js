@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import './index.sass'
 import Note from '../Note'
 
+
 export default function ({ indexBox, title, icon, group, hint, notes, onCreateNewNote, onEditNote, onDeleteNote }) {
   const [isNewNote, setIsNewNote] = useState(false)
   const [description, setDescription] = useState(null)

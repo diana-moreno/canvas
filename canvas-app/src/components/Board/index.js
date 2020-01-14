@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './index.sass'
 import Header from '../Header'
 import BoardSection from '../BoardSection'
+import Feedback from '../Feedback'
 import constants from './constants.js'
 import logic from '../../logic'
 const { boxes, boardSections } = constants
@@ -10,6 +11,7 @@ const { listNotes, createNote, editNote, deleteNote } = logic
 export default function () {
   const [notes, setNotes] = useState()
   const [update, setUpdate] = useState(false)
+  const [error, setError] = useState()
 
   useEffect(() => {
     (async () => {
@@ -21,10 +23,10 @@ export default function () {
 
   async function handleCreateNote(indexBox, description) {
     try {
-      const { note } = await createNote(indexBox, description)
+      await createNote(indexBox, description)
       setUpdate(true)
     } catch({ message }) {
-      console.log(message)
+      setError(message)
     }
   }
 
@@ -33,7 +35,7 @@ export default function () {
       await editNote(id, description)
       setUpdate(true)
     } catch({ message }) {
-      console.log(message)
+      setError(message)
     }
   }
 
@@ -42,8 +44,12 @@ export default function () {
       await deleteNote(id)
       setUpdate(true)
     } catch({ message }) {
-      console.log(message)
+      setError(message)
     }
+  }
+
+  function handleBack() {
+    setError(null)
   }
 
   return <>
@@ -59,8 +65,12 @@ export default function () {
             onEditNote={handleEditNote}
             onDeleteNote={handleDeleteNote}
             key={position}
+            error={error}
           />
         })
+      }
+      {
+        error && <Feedback error={error} onBack={handleBack} />
       }
     </main>
   </>

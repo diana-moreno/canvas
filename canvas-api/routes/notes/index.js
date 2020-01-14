@@ -64,6 +64,7 @@ router.get('/', async (req, res) => {
     res.json(notes)
 
   } catch (error) {
+    const { message } = error
     res.status(500).json(message)
   }
 })

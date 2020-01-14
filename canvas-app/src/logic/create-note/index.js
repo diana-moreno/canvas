@@ -1,4 +1,4 @@
-const { validate } = require('canvas-utils')
+const { validate, errors: { NotFoundError } } = require('canvas-utils')
 const API_URL = process.env.REACT_APP_API_URL
 
 export default function(indexBox, description) {
@@ -17,6 +17,7 @@ export default function(indexBox, description) {
     })
 
     if (res.status === 200) return res.json()
-    throw new Error(JSON.parse(res.body).message)
+    if (res.status === 404) throw new NotFoundError('Not found. It is not possible to create a note.')
+    throw new Error('Error connecting.')
   })()
 }
