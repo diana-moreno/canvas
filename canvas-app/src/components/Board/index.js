@@ -13,7 +13,8 @@ export default function () {
   const [update, setUpdate] = useState(false)
   const [error, setError] = useState()
   const [isHintMode, setIsHintMode] = useState(false)
-  const [indexBox, setIndexBox] = useState()
+  const [title, setTitle] = useState()
+  const [hint, setHint] = useState()
 
   useEffect(() => {
     (async () => {
@@ -57,7 +58,10 @@ export default function () {
 
   function enableHintMode(indexBox) {
     setIsHintMode(true)
-    setIndexBox(indexBox)
+    const title = boxes[indexBox].title
+    const hint = boxes[indexBox].hint
+    setTitle(title)
+    setHint(hint)
   }
 
   return <>
@@ -79,7 +83,7 @@ export default function () {
         })
       }
       { error && <Modal error={error} onBack={handleBack} /> }
-      { isHintMode && <Modal indexBox={indexBox} onBack={handleBack} /> }
+      { isHintMode && <Modal title={title} hint={hint} onBack={handleBack} /> }
     </main>
   </>
 }

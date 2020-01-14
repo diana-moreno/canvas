@@ -17,7 +17,7 @@ const boxes = [
     icon: 'all_inclusive',
     title: 'KEY PARTNERS',
     group: 'how',
-    hint: "The most important activities in executing a company's value proposition."
+    hint: "The most important activities in executing a company's value proposition. An example for Bic, the pen manufacturer, would be creating an efficient supply chain to drive down costs."
   },
   {
     indexBox: 1,
